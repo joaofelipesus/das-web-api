@@ -10,6 +10,10 @@ import Config
 config :das_web_api,
   ecto_repos: [DasWebApi.Repo]
 
+config :das_web_api, DasWebApi.Repo,
+  migration_primary_key: [type: :binary_id],
+  migration_foreign_key: [type: :binary_id]
+
 # Configures the endpoint
 config :das_web_api, DasWebApiWeb.Endpoint,
   url: [host: "localhost"],
