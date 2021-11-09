@@ -1,6 +1,8 @@
 defmodule DasWebApiWeb.Router do
   use DasWebApiWeb, :router
 
+  alias DasWebApiWeb
+
   pipeline :browser do
     plug :accepts, ["html"]
     plug :fetch_session
@@ -16,8 +18,12 @@ defmodule DasWebApiWeb.Router do
 
   scope "/", DasWebApiWeb do
     pipe_through :browser
-
     get "/", PageController, :index
+  end
+
+  scope "/api", DasWebApiWeb do
+    pipe_through :api
+    resources "/products", ProductsController, except: [:new, :edit]
   end
 
   # Other scopes may use custom stacks.
