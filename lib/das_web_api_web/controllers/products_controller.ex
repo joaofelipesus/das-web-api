@@ -37,7 +37,7 @@ defmodule DasWebApiWeb.ProductsController do
   end
 
   def delete(conn, params) do
-    with {:ok, %Product{} = product} <- DasWebApi.delete_product(params) do
+    with {:ok, _} <- DasWebApi.delete_product(params) do
       conn
       |> put_status(:no_content)
       |> text("")
