@@ -35,4 +35,12 @@ defmodule DasWebApiWeb.ProductsController do
       |> render("product.json", product: product)
     end
   end
+
+  def delete(conn, params) do
+    with {:ok, %Product{} = product} <- DasWebApi.delete_product(params) do
+      conn
+      |> put_status(:no_content)
+      |> text("")
+    end
+  end
 end
