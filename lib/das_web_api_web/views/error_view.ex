@@ -13,4 +13,19 @@ defmodule DasWebApiWeb.ErrorView do
   def template_not_found(template, _assigns) do
     Phoenix.Controller.status_message_from_template(template)
   end
+
+  def render("error.json", %{result: %Ecto.Changeset{} = changeset}) do
+    IO.inspect(changeset)
+    %{
+      messages: handle_messages(changeset)
+    }
+  end
+
+  defp handle_messages(changeset) do
+    Ecto.Changeset.traverse_errors(changeset, fn {msg, opts} ->
+      Enum.reduce(opts, msg, fn {key, value}, acc ->
+        String.replace(acc, "%{#{key}}", to_string(value))
+      end)
+    end)
+  end
 end
