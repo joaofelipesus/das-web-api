@@ -8,4 +8,5 @@ defmodule DasWebApi do
   """
 
   defdelegate create_product(params), to: DasWebApi.Products.Create, as: :call
+  defdelegate update_product(params), to: DasWebApi.Products.Update, as: :call
 end

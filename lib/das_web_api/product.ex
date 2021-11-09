@@ -4,13 +4,15 @@ defmodule DasWebApi.Product do
 
   @primary_key {:id, :binary_id, autogenerate: true}
 
+  @derive {Jason.Encoder, only: [:id, :description]}
+
   schema "products" do
     field :description, :string
     timestamps()
   end
 
-  def changeset(params) do
-    %__MODULE__{}
+  def changeset(struct \\ %__MODULE__{}, params) do
+    struct
     |> cast(params, [:description])
     |> validate_required([:description])
     |> unique_constraint([:description])

@@ -3,30 +3,15 @@ defmodule DasWebApiWeb.ProductsView do
 
   alias DasWebApi.Product
 
-  def render("create.json", %{product: %Product{} = product}) do
-    %{
-      id: product.id,
-      description: product.description
-    }
-  end
-
-  def render("show.json", %{product: %Product{} = product}) do
-    %{
-      id: product.id,
-      description: product.description
-    }
-  end
+  def render("product.json", %{product: %Product{} = product}), do: render_product(product)
 
   def render("index.json", %{products: products}) do
     %{
-      products: Enum.map(products, fn product ->
-        %{
-          product: %{
-            id: product.id,
-            description: product.description
-          }
-        }
-      end)
+      products: Enum.map(products, fn product -> render_product(product) end)
     }
+  end
+
+  defp render_product(product) do
+    %{product: product}
   end
 end

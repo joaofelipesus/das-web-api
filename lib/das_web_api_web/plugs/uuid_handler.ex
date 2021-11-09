@@ -15,9 +15,10 @@ defmodule DasWebApiWeb.Plugs.UUIDHandler do
   def call(conn, _opts), do: conn
 
   defp handle_error(conn) do
+    encoded_response = Jason.encode!(%{message: "UUID bad format."})
     conn
     |> put_resp_content_type("application/json")
-    |> send_resp(:bad_request, %{message: "UUID bad format."})
+    |> send_resp(:bad_request, encoded_response)
     |> halt
   end
 end

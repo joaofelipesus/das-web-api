@@ -10,7 +10,7 @@ defmodule DasWebApiWeb.ProductsController do
     with {:ok, %Product{} = product} <- DasWebApi.create_product(params) do
       conn
       |> put_status(:created)
-      |> render("create.json", product: product)
+      |> render("product.json", product: product)
     end
   end
 
@@ -18,7 +18,7 @@ defmodule DasWebApiWeb.ProductsController do
     with %Product{} = product <- DasWebApi.Repo.get(DasWebApi.Product, id) do
       conn
       |> put_status(:ok)
-      |> render("show.json", product: product)
+      |> render("product.json", product: product)
     end
   end
 
@@ -26,5 +26,13 @@ defmodule DasWebApiWeb.ProductsController do
     conn
     |> put_status(:ok)
     |> render("index.json", products: Repo.all(Product))
+  end
+
+  def update(conn, params) do
+    with {:ok, %Product{} = product} <- DasWebApi.update_product(params) do
+      conn
+      |> put_status(:ok)
+      |> render("product.json", product: product)
+    end
   end
 end
