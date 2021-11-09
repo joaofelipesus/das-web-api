@@ -16,4 +16,17 @@ defmodule DasWebApiWeb.ProductsView do
       description: product.description
     }
   end
+
+  def render("index.json", %{products: products}) do
+    %{
+      products: Enum.map(products, fn product ->
+        %{
+          product: %{
+            id: product.id,
+            description: product.description
+          }
+        }
+      end)
+    }
+  end
 end
