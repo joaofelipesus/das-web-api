@@ -2,6 +2,7 @@ defmodule DasWebApiWeb.Router do
   use DasWebApiWeb, :router
 
   alias DasWebApiWeb
+  alias DasWebApiWeb.Plugs.UUIDHandler
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -14,6 +15,7 @@ defmodule DasWebApiWeb.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
+    plug UUIDHandler
   end
 
   scope "/", DasWebApiWeb do

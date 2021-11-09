@@ -9,4 +9,11 @@ defmodule DasWebApiWeb.ProductsView do
       description: product.description
     }
   end
+
+  def render("show.json", %{product: %Product{} = product}) do
+    %{
+      id: product.id,
+      description: product.description
+    }
+  end
 end

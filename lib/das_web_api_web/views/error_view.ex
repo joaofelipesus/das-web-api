@@ -15,10 +15,13 @@ defmodule DasWebApiWeb.ErrorView do
   end
 
   def render("error.json", %{result: %Ecto.Changeset{} = changeset}) do
-    IO.inspect(changeset)
     %{
       messages: handle_messages(changeset)
     }
+  end
+
+  def render("404.json", %{resource: resource}) do
+    %{message: "#{resource} not found."}
   end
 
   defp handle_messages(changeset) do

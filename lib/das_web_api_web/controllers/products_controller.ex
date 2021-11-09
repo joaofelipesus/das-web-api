@@ -12,4 +12,13 @@ defmodule DasWebApiWeb.ProductsController do
       |> render("create.json", product: product)
     end
   end
+
+  def show(conn, %{"id" => id}) do
+    product =
+    with %Product{} = product <- DasWebApi.Repo.get(DasWebApi.Product, id) do
+      conn
+      |> put_status(:ok)
+      |> render("show.json", product: product)
+    end
+  end
 end
