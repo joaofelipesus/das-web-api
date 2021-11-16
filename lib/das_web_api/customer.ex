@@ -6,6 +6,8 @@ defmodule DasWebApi.Customer do
 
   @required_params [:first_name, :last_name, :cpf]
 
+  @derive {Jason.Encoder, only: [:id, :first_name, :last_name, :cpf]}
+
   schema "customers" do
     field :first_name, :string
     field :last_name, :string
