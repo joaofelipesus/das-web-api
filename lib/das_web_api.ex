@@ -10,4 +10,6 @@ defmodule DasWebApi do
   defdelegate create_product(params), to: DasWebApi.Products.Create, as: :call
   defdelegate update_product(params), to: DasWebApi.Products.Update, as: :call
   defdelegate delete_product(params), to: DasWebApi.Products.Delete, as: :call
+
+  defdelegate create_customer(params), to: DasWebApi.Customers.Create, as: :call
 end
