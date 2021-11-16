@@ -4,11 +4,20 @@ defmodule DasWebApi.Customer do
 
   @primary_key {:id, :binary_id, autogenerate: true}
 
+  @required_params [:first_name, :last_name, :cpf]
+
   schema "customers" do
     field :first_name, :string
     field :last_name, :string
     field :cpf, :string
     timestamps()
+  end
+
+  def changeset(struct \\ %__MODULE__{}, params) do
+    struct
+    |> cast(params, @required_params)
+    |> validate_required(@required_params)
+    |> unique_constraint([:cpf])
   end
 
 end
