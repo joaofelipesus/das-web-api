@@ -20,4 +20,11 @@ defmodule DasWebApiWeb.CustomersController do
       |> render("customer.json", customer: customer)
     end
   end
+
+  def index(conn, _params) do
+    customers = DasWebApi.Repo.all(DasWebApi.Customer)
+    conn
+    |> put_status(:ok)
+    |> render("index.json", customers: customers)
+  end
 end

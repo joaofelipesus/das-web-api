@@ -4,4 +4,8 @@ defmodule DasWebApiWeb.CustomersView do
   def render("customer.json", %{customer: customer}) do
     %{customer: customer}
   end
+
+  def render("index.json", %{customers: customers}) do
+    %{ customers: customers }
+  end
 end
