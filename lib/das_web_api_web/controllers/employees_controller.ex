@@ -33,4 +33,12 @@ defmodule DasWebApiWeb.EmployeesController do
       |> render("show.json", employee: employee)
     end
   end
+
+  def delete(conn, %{"id" => id}) do
+    with {:ok, _} <- DasWebApi.delete_employee(id) do
+      conn
+      |> text("")
+      |> put_status(:no_content)
+    end
+  end
 end
