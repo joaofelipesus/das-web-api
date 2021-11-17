@@ -25,4 +25,12 @@ defmodule DasWebApiWeb.EmployeesController do
       |> render("show.json", employee: employee)
     end
   end
+
+  def update(conn, params) do
+    with {:ok, %Employee{} = employee} <- DasWebApi.update_employee(params) do
+      conn
+      |> put_status(:ok)
+      |> render("show.json", employee: employee)
+    end
+  end
 end

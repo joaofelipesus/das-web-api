@@ -17,4 +17,5 @@ defmodule DasWebApi do
   defdelegate delete_customer(params), to: DasWebApi.Customers.Delete, as: :call
 
   defdelegate create_employee(params), to: DasWebApi.Employees.Create, as: :call
+  defdelegate update_employee(params), to: DasWebApi.Employees.Update, as: :call
 end
