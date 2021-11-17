@@ -14,7 +14,15 @@ defmodule DasWebApiWeb.EmployeesController do
     with %Employee{} = employee <- Repo.get(Employee, id) do
       conn
       |> put_status(:ok)
-      |> render("employee.json", employee: employee)
+      |> render("show.json", employee: employee)
+    end
+  end
+
+  def create(conn, params) do
+    with {:ok, %Employee{} = employee} <- DasWebApi.create_employee(params) do
+      conn
+      |> put_status(:created)
+      |> render("show.json", employee: employee)
     end
   end
 end

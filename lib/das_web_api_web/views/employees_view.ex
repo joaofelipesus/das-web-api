@@ -5,7 +5,7 @@ defmodule DasWebApiWeb.EmployeesView do
     %{employees: Enum.map(employees, fn e -> render_employee(e) end)}
   end
 
-  def render("employee.json", %{employee: employee}), do: render_employee(employee)
+  def render("show.json", %{employee: employee}), do: render_employee(employee)
 
   defp render_employee(employee) do
     %{employee: employee}
