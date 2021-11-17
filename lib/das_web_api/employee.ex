@@ -6,6 +6,8 @@ defmodule DasWebApi.Employee do
 
   @required_params [:name, :age]
 
+  @derive {Jason.Encoder, only: [:id, :name, :age]}
+
   schema "employees" do
     field :name, :string
     field :age, :integer

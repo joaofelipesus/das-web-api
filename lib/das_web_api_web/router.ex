@@ -27,6 +27,7 @@ defmodule DasWebApiWeb.Router do
     pipe_through :api
     resources "/products", ProductsController, except: [:new, :edit]
     resources "/customers", CustomersController, except: [:new, :edit]
+    resources "/employees", EmployeesController, except: [:new, :edit]
   end
 
   # Other scopes may use custom stacks.
