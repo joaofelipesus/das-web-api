@@ -35,4 +35,12 @@ defmodule DasWebApiWeb.CustomersController do
       |> render("customer.json", customer: customer)
      end
   end
+
+  def delete(conn, %{"id" => id}) do
+    with {:ok, _} <- DasWebApi.delete_customer(id) do
+      conn
+      |> text("")
+      |> put_status(:no_content)
+    end
+  end
 end
