@@ -4,6 +4,8 @@ defmodule DasWebApiWeb.EmployeesController do
   alias DasWebApi.Employee
   alias DasWebApi.Repo
 
+  action_fallback DasWebApiWeb.FallbackController
+
   def index(conn, _params) do
     conn
     |> put_status(:ok)
